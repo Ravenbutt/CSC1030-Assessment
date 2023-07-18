@@ -1,0 +1,693 @@
+@font-face {
+	font-family: "Amatic SC";
+	src: url(fonts/AmaticSC-Regular.ttf);
+}
+@font-face {
+	font-family: "Amatic SC";
+	font-weight: 700;
+	src: url(fonts/AmaticSC-Bold.ttf);
+}
+@font-face {
+	font-family: "Permanent Marker";
+	src: url(fonts/PermanentMarker-Regular.ttf);
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	overflow: hidden;
+	font-family: "Amatic SC", Verdana, Arial, Helvetica;
+	font-size: 1.2em;
+	color: #fff;
+	height: 100%;
+	margin: 0;
+	background-color: #000;
+}
+#background::after {
+	content: ".";
+	visibility: hidden;
+}
+#toSkew {
+	background-color: rgba(56, 56, 56, 0.5);
+	position: absolute;
+	top: 10%;
+	bottom: 10%;
+	height: 80%;
+	width: 100%;
+	left: 0;
+	margin: auto;
+	text-align: center;
+	transform: skewY(5deg);
+	overflow: hidden;
+}
+#toUnskew {
+	transform: skewY(-5deg);
+	position: relative;
+	text-align: center;
+	margin: auto;
+	height: 100%;
+	overflow: visible;
+}
+#formWrap {
+	position: absolute;
+	top: 35%;
+	left: 70%;
+	height: 40%;
+	text-align: left;
+}
+#formWrap input[type="text"],
+input[type="number"],
+select {
+	outline: 0 !important;
+	border: 3px solid transparent;
+}
+#formWrap input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+	border: 3px solid #302b68;
+	border-radius: 4px;
+}
+#formWrap input[type="text"]:focus {
+	background-color: rgba(29, 29, 29, 0.9);
+}
+#formWrap input[type="text"] {
+	background-color: rgba(29, 29, 29, 0.9);
+	color: #fff;
+}
+#formWrap select {
+	background-color: rgba(29, 29, 29, 0.9);
+	color: #fff;
+}
+#formWrap input[type="number"] {
+	background-color: rgba(29, 29, 29, 0.9);
+	color: #fff;
+}
+#formWrap label {
+	font-size: 2em;
+}
+#optionWrapper {
+	position: absolute;
+	top: 85%;
+	left: 2%;
+}
+#optLabel {
+	display: flex;
+	font-size: 1.2em;
+	color: #fff;
+	padding-left: 4%;
+}
+#text .red {
+	color: red;
+}
+#text .green {
+	color: green;
+}
+#textWrapper {
+	position: absolute;
+	top: auto;
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+#gameText {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	clear: right;
+	width: 60%;
+	height: 60%;
+	margin: 5% auto 2%;
+	padding: 5% auto 2%;
+	text-align: center;
+	color: #fff;
+	z-index: 5;
+	font-size: 1.5em;
+	-webkit-mask-image: linear-gradient(to top, #000 70%, transparent 100%);
+	mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+}
+hr {
+	position: absolute;
+	width: 50%;
+	top: 10%;
+	left: 25%;
+	border-top: 3px double rgba(51, 51, 51, 0.9);
+}
+#text {
+	text-align: center;
+	height: 90%;
+	overflow: auto;
+	vertical-align: bottom;
+	position: absolute;
+	bottom: 0;
+	padding-top: 3%;
+	line-height: 120%;
+}
+#optionWrapper {
+	display: flex;
+	height: 10%;
+	width: 20%;
+	text-align: center;
+}
+#extraButtons {
+	position: fixed;
+	display: flex;
+	flex-direction: row;
+	width: 25%;
+	height: 10%;
+	justify-content: space-evenly;
+	align-content: stretch;
+	bottom: 2%;
+}
+#extraButtons label {
+	display: inline-block;
+	margin: auto auto auto 1%;
+	text-align: center;
+	display: inline-block;
+	font-size: 1.6em;
+}
+#extraButtons button {
+	position: relative;
+	border: none;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 60px;
+}
+#btnShowOptions {
+	background-image: url(icons/settings.png);
+	margin-left: 10%;
+}
+#btnShowOptions:hover {
+	background-image: url(icons/settingsInverted.png);
+	cursor: pointer;
+}
+#btnShowHint {
+	background-image: url(icons/hint.png);
+	width: 80px;
+}
+#btnShowHint:hover {
+	background-image: url(icons/hintInverted.png);
+	cursor: pointer;
+}
+#uInput {
+	background-color: rgba(51, 51, 51, 0.9);
+	outline: 0 !important;
+	border: 3px solid transparent;
+	border-radius: 10px;
+	color: #fff;
+	text-align: center;
+	margin: auto;
+	margin-right: 0;
+	width: 50%;
+}
+#uInput::placeholder {
+	color: rgba(196, 196, 196, 0.4);
+}
+#uInput:hover {
+	background-color: rgba(99, 99, 99, 0.9);
+}
+#uInput:focus {
+	border-color: #8c8b8b;
+}
+a {
+	text-decoration: none;
+	display: inline-block;
+	padding: 8px 16px;
+}
+a:hover {
+	background-color: #000;
+	color: #fff;
+}
+::-webkit-scrollbar {
+	width: 5px;
+}
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px rgba(51, 51, 51, 0.9);
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background: rgba(196, 196, 196, 0.4);
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: grey;
+}
+.red {
+	font-weight: 700;
+	color: red;
+}
+.green {
+	color: green;
+}
+#tutList {
+	margin-top: 2%;
+}
+#tutList li {
+	list-style: none;
+	overflow: visible;
+}
+#tutList li::before {
+	content: "";
+	height: 24px;
+	width: 24px;
+	display: inline-block;
+	background-image: url("icons/tutArrow.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding-right: 1%;
+}
+#tutButton {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 45%;
+}
+.collapsible {
+	background-color: rgba(51, 51, 51, 0);
+	color: green;
+	cursor: pointer;
+	padding: 18px;
+	width: 60%;
+	border: none;
+	text-align: center;
+	font-family: inherit;
+	font-size: 1.4em;
+	outline: none;
+	margin: auto;
+}
+.collapsible:hover {
+	background-color: rgba(99, 99, 99, 0.9);
+}
+.content {
+	padding: 0 18px;
+	display: none;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+#historyWrap {
+	position: absolute;
+	overflow: auto;
+	background-color: #000;
+	left: 25%;
+	bottom: 25%;
+	z-index: 10000;
+	width: 50%;
+	height: 50%;
+	border: 2px solid transparent;
+	border-radius: 5%;
+	display: none;
+	margin: auto;
+}
+#historyWrap p {
+	height: 20%;
+	max-height: 100px;
+	width: 50%;
+	margin: auto;
+	font-size: 1.2em;
+}
+.btnHistory {
+	background-color: rgba(51, 51, 51, 0);
+	color: red;
+	cursor: pointer;
+	border: none;
+	text-align: center;
+	font-family: inherit;
+	font-size: 1.4em;
+	outline: 0;
+	margin: auto;
+	width: 2%;
+}
+#optionsBlock {
+	text-align: center;
+	font-size: 1.4em;
+	position: fixed;
+	bottom: 11%;
+	left: 5%;
+	overflow: auto;
+	background-color: #fff;
+	color: #000;
+	border: 10px solid transparent;
+	border-radius: 10% 10% 10% 0;
+	min-height: 500px;
+	min-width: 500px;
+	display: none;
+	flex-direction: column;
+}
+#optionsBlock hr:not(#topDivider) {
+	position: initial;
+	width: 50%;
+	margin-bottom: 5%;
+}
+#optionsBlock input {
+	margin: 2% auto;
+}
+#optionsBlock h2 {
+	margin: 2%;
+}
+#topDivider {
+	position: initial;
+	width: 95%;
+}
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(51, 51, 51, 0.9);
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: #fff;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+input:checked + .slider {
+	background-color: rgba(99, 99, 99, 0.9);
+}
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196f3;
+}
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+.slider.round {
+	border-radius: 34px;
+}
+.slider.round:before {
+	border-radius: 50%;
+}
+.table {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	margin: auto;
+	font-size: 1.2em;
+	justify-content: center;
+}
+.row {
+	display: flex;
+	min-height: 50px;
+	margin-bottom: 15%;
+	align-items: center;
+}
+.col {
+	flex: 2;
+	align-items: center;
+}
+#txtSpeed {
+	display: inline-flex;
+	padding: 8%;
+	background-color: rgba(51, 51, 51, 0.9);
+	outline: 0 !important;
+	border: 3px solid transparent;
+	border-radius: 10px;
+	color: #fff;
+	text-align: center;
+	width: 65%;
+}
+#txtSpeed::-webkit-inner-spin-button {
+	width: 30px;
+	height: 30px;
+	margin-right: 0;
+}
+#txtSpeed:hover {
+	background-color: rgba(99, 99, 99, 0.9);
+}
+#txtSpeed:focus {
+	border-color: #8c8b8b;
+}
+#hintBlock {
+	overflow: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	position: fixed;
+	bottom: 100px;
+	left: 250px;
+	background-color: rgba(0, 128, 0, 0.801);
+	border: 5px solid #fff;
+	border-radius: 30px 30px 30px 0;
+	width: 30%;
+	height: 20%;
+	text-align: center;
+	display: none;
+}
+.hintRow {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-between;
+}
+#hintHeading {
+	height: 10%;
+	margin: 0 10% 5% 10%;
+}
+#hintHeading h2 {
+	text-align: right;
+	font-size: 2em;
+	margin: 2% 0;
+}
+#hintBlock p {
+	margin: 2%;
+	text-align: center;
+	width: 100%;
+}
+#hintBlock button {
+	width: 48px;
+	height: 48px;
+	background-image: url(icons/close1.png);
+	background-color: transparent;
+	border: transparent;
+}
+#hintText {
+	font-size: 1.6em;
+	display: block;
+	margin: 0;
+}
+.hint {
+	color: greenyellow;
+}
+#musicPrompt {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	width: 50%;
+	height: 40%;
+	left: 25%;
+	top: 25%;
+	background-color: rgb(51, 51, 51);
+	border: 10px solid transparent;
+	border-radius: 15%;
+	color: green;
+	font-size: 1.8em;
+	z-index: 10000;
+}
+#musicPrompt h1 {
+	width: 100%;
+}
+#musicYes, #musicNo {
+	width: 10%;
+	height: 10%;
+	margin-bottom: 5%;
+}
+#musicYes {
+	background-color: green;
+	border-color: rgb(0, 141, 0);
+}
+#musicNo {
+	background-color: red;
+	border-color: rgb(255, 36, 36);
+}
+#musicYes:hover {
+	cursor: pointer;
+	background-color: darkgreen;
+	border-color: green;
+}
+#musicNo:hover {
+	cursor: pointer;
+	background-color: rgb(214, 0, 0);
+	border-color: rgb(255, 40, 40);
+}
+@media screen and (max-width: 1000px) {
+	#extraButtons {
+		width: 100%;
+	}
+	#hintBlock {
+		width: 100%;
+		left: 0;
+		border-radius: 30px 30px 0 0;
+	}
+	#toSkew {
+		background-color: transparent;
+	}
+	#gameText {
+		font-size: 1.3em;
+	}
+	.heading {
+		width: 100%;
+		margin: auto;
+		text-align: center;
+	}
+	#text {
+		padding-top: 20%;
+	}
+	#optionsBlock {
+		width: 100%;
+		left: 0;
+		min-height: 0;
+		min-width: 0;
+		bottom: 12%;
+	}
+	.heading {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+	}
+	#musicPrompt {
+		width: 100%;
+		left: 0;
+	}
+	#musicPrompt h2 {
+		font-size: 1.2em;
+	}
+	#musicYes, #musicNo {
+		width: 40%;
+	}
+	#formWrap {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		left: 0;
+		top: 25%;
+		align-items: center;
+		text-align: center;
+	}
+	#formWrap input {
+		margin: auto;
+		text-align: center;
+	}
+
+}
+.heading {
+	position: fixed;
+	right: 5%;
+	top: 5%;
+}
+.heading h1 {
+	margin: 0;
+	font-size: 3em;
+}
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.fadeIn {
+    animation: fadeIn 4s 1;
+}
+.fadeOutVideo {
+	animation: fadeOut 4s forwards 1;
+}
+.fadeOut {
+	animation: fadeOut 6s 1;
+}
+.gameEnd {
+	position: fixed;
+	flex-direction: column;
+	align-content: space-between;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	font-size: 5em;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	color: red;
+	background-color: #000;
+	display: none;
+	line-height: 0;
+}
+#gameOverVideo {
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -100000;
+}
+.btnRestart {
+	width: 94px;
+	height: 94px;
+	background-image: url(icons/restart.png);
+	background-color: transparent;
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: transparent;
+}
+.btnRestart:hover {
+	cursor: pointer;
+	background-image: url(icons/restartInverted.png);
+	outline: none;
+}
+.playerAction {
+	color: rgb(213, 224, 114);
+	font-size: 1.2em;
+}
+q {
+	color: rgb(0, 140, 255);
+}
+.emphasise {
+	font-family: 'Permanent Marker';
+}
+.item {
+	color: orange;
+}
+.doubleSpace {
+	display: block;
+	content: "";
+	margin-top: 2%;
+}
+
+
+
+
